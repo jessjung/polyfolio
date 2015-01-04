@@ -12,6 +12,9 @@
       cursor: hand;
       cursor: pointer;
     }
+    a{
+      color: #eee;
+    }
     hr {
       border: 1px solid rgba(255,255,255,0.5);
       background-color: rgba(255,255,255,0.5);
@@ -28,7 +31,6 @@
     }
     .rollin{
       width: 4000px;
-
     }
     .rollout{
       width: 0px;
@@ -122,11 +124,11 @@
     .desc{
       position: fixed;
       right:105px;
-      top: 210px;
+      top: 200px;
       font-weight: 500;
       font-size: 14px;
-      width: 50%;
-      line-height: 24px;
+      width: 60%;
+      line-height: 22px;
       /*letter-spacing: 1px;*/
       color: #fff;
       text-align: left;
@@ -296,6 +298,7 @@
     </style>
     <div id="back" class="back-side mirror rotatebackandfadein"><!--rotateandfadeout-->
       <div>
+      <core-icon id="closeicon" icon="close" style="position: absolute; top:0; left:0; color:#fff; width: 30px; height: 30px;"></core-icon>
       <span id="title" class="title mirror">
       <content select="name"></content></span>
       <span id="jobTitle" class="job-title mirror hide">
@@ -304,6 +307,7 @@
       <content select="desc"></content>
       <br/>
       <div class="space"></div>
+      Contact | jessjiyoungjung@gmail.com <a href="mailto:jessjiyoungjung@gmail.com"><core-icon icon="mail"></core-icon></a>
       <hr>
       This website is built with Polymer <core-icon icon="polymer"></core-icon>
       </span>
@@ -314,7 +318,8 @@
       <content select="img"></content>
       <span id="about" class="about-title">ABOUT JESS</span>
     </div>
-    <div id="darkscreen" class="rollout"></div>
+    <div id="darkscreen" class="rollout">
+    </div>
   </template>
   <script>
   Polymer('mobile-profile',{
