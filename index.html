@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <title>Jess Jung | Interaction designer</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Jess Jiyoung Jung">
+  <meta name="description" content="This is a Jess Jung's portfolio website including her exploration over interaction design / UX / UI / visual design from web to mobile application. This website is coded by Jess using Polymer framework and web components">
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="elements/cover-inspiration.html">
+  <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+  <link rel="import" href="elements/mobile-profile.html">
+  <link rel="import" href="elements/item-nav.html">
+  <!-- <link rel="import" href="elements/thumbnail-tiles.html"> -->
+  <link rel="import" href="elements/article-box.html">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body unresolved fullbleed>
+  <cover-inspiration></cover-inspiration>
+  <core-scaffold id="scaffold" class="hide">
+    <!--Left nav -->
+    <nav>
+      <!--Top Left thumnail box -->
+      <div class="profile-wrapper">
+      <mobile-profile>
+        <name>JESS JUNG</name>
+        <job-title>Interaction Designer</job-title>
+        <desc>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</desc>
+        <img id="thumbnail" src="images/pb-th.jpg">
+      </mobile-profile>
+    </div>
+    <!--Left side item nav menus -->
+    <item-nav></item-nav>
+    </nav>
+    <!--Main article area-->
+    <div layout horizontal center-justified fit id="maincontent">
+      <!-- <thumbnail-tiles></thumbnail-tiles> -->
+      <article-box></article-box>
+    </div>
+  </core-scaffold>
+</body>
+<script>
+  var debug = false;
+  var previousHash;
+  var profile = document.querySelector('mobile-profile');
+  var tiles = document.querySelector('thumbnail-tiles');
+  var article = document.querySelector('article-box');
+  if(debug)
+    {
+    var tilelists = document.querySelector("thumbnail-tiles");
+    tilelists.addEventListener('core-select', function() {
+      var menulists = this.$.mainmenu;
+      var selectedItem = menulists.getElementsByClassName('core-selected')[0];
+      console.log(selectedItem);
+
+    });
+    }
+  var nav = document.querySelector('item-nav');
+  nav.addEventListener('core-select', function() {
+    var menulists = this.$.mainmenu;
+    var selectedItem = menulists.getElementsByClassName('core-selected')[0];
+    // console.log(selectedItem);
+
+    if(selectedItem !== undefined){
+      var b = document.querySelector('mobile-profile::shadow #back');
+      var f = document.querySelector('mobile-profile::shadow #front');
+      /*********************** init ************************/
+      var previousArticle = document.querySelector('article-box::shadow '+previousHash);
+      if(previousArticle != null){
+        previousArticle.className = "hide";
+      }
+      if(selectedItem.hash == "#all"){
+        console.log("All page");
+
+        tiles.className = "";
+        article.className = "hide";
+
+        var timeout = setTimeout(function(){
+          b.className = "back-side mirror rotatebackandfadein";
+          f.className = "front-side rotatebackandfadeout";
+          clearTimeout(timeout);
+        },380);
+      }else{
+        console.log(selectedItem.hash);
+        if(debug) tiles.className = "hide";
+        article.className = "";
+
+        /*************** Mobile-profile Onchange ***************/
+        b.className = "back-side mirror rotateandfadeout";
+        f.className = "front-side rotateandfadein";
+
+        /*************** Maincontents Onchange ***************/
+        var selectedArticle = document.querySelector('article-box::shadow '+selectedItem.hash);
+        // var selectedArticle = document.querySelector('article-box');
+
+        var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if (!isChrome){
+        // console.log(selectedArticle.querySelector("#tags"));
+        selectedArticle.querySelector("#tags").innerHTML = selectedArticle.querySelector("#tags").getAttribute("text");
+        selectedArticle.querySelector("#gallary").innerHTML = selectedArticle.querySelector("#gallary").getAttribute("text");
+        selectedArticle.querySelector("#interaction").innerHTML = selectedArticle.querySelector("#interaction").getAttribute("text");
+        selectedArticle.querySelector("#visual").innerHTML = selectedArticle.querySelector("#visual").getAttribute("text");
+        selectedArticle.querySelector("#prototype").innerHTML = selectedArticle.querySelector("#prototype").getAttribute("text");
+        }
+        // console.log(selectedArticle);
+
+        if(selectedArticle != null){
+        selectedArticle.className = "show";
+        selectedArticle.getElementsByTagName("div")[0].scrollIntoView();
+        }
+      }
+      previousHash = selectedItem.hash;
+    }
+  });
+</script>
+</html>

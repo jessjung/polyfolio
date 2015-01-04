@@ -1,0 +1,236 @@
+<link rel="import" href="content-data.html">
+<polymer-element name='article-box'>
+  <template>
+    <style>
+      :host{
+        width: 80%;
+        font-family: Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        font-weight: 200;
+        line-height: 1.43;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2d2d2d;
+      }
+      .big-title{
+        font-size: 260%;
+        font-weight: 700;
+        line-height: 1;
+        /*line-height: 2;*/
+      }
+      .title-wrapper{
+        padding: 0;
+      }
+      @media (max-width: 720px) {
+        :host{
+          width: 90%;
+          font-family: Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;
+          font-size: 12px;
+          font-weight: 200;
+          line-height: 1.43;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-align: center;
+          color: #2d2d2d;
+        }
+      .big-title{
+        font-size: 200%;
+        font-weight: 700;
+        line-height: 1;
+        /*line-height: 2;*/
+        }
+        .title-wrapper{
+          padding: 10px;
+        }
+      }
+      @media (min-width: 1300px) {
+        :host{
+          width: 60%;
+          font-family: Roboto,'Helvetica Neue',Helvetica,Arial,sans-serif;
+          font-size: 12px;
+          font-weight: 200;
+          line-height: 1.43;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-align: center;
+          color: #2d2d2d;
+        }
+        .big-title{
+          font-size: 300%;
+          font-weight: 700;
+          line-height: 1;
+          /*line-height: 2;*/
+        }
+      }
+      p, li{
+        font-size: 15px;
+      }
+      a{
+        color: #428bca;
+        text-decoration: none;
+      }
+      .tag{
+        font-size: 1em;
+        font-weight: 400;
+        background-color: #f36368;
+        padding: 2px 7px 2px 7px;
+        border-radius: 5%;
+        color: #fff;
+        line-height: 2;
+      }
+      .pointcolor{
+        font-weight: 700;
+        color: #f36368;
+      }
+      .chapter{
+        padding-top: 10%;
+      }
+      .chapter-title{
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #f36368;
+      }
+      .synopsis{
+        font-weight: 500;
+      }
+      img{
+        width:100%;
+        height: auto;
+      }
+      .tagline, .time, .role{
+        letter-spacing: 1px;
+      }
+      core-icon{
+        color: #f36368;
+      }
+      .uppercase {
+        text-transform: uppercase;
+      }
+      .text-jumbo {
+        font-size: 2em;
+        font-weight: 500;
+        line-height: 1;
+      }
+      .paragraph{
+        /*width: 60%;*/
+        /*margin: auto;*/
+        text-align: left;
+      }
+      .emphasized{
+        font-size: 1.3em;
+        font-weight: 500;
+        line-height: 2;
+      }
+      .row-space-2 {
+        margin-bottom: 2em;
+      }
+      .content-space-bar{
+        height: 80px;
+        width: 100%;
+      }
+      .button{
+        border: 2px solid #428bca;
+        text-align: center;
+        /*width: 30%;*/
+
+        line-height: 27px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-decoration: none;
+        padding: 10px 30px 6px 30px;
+        margin-right: 20px;
+        vertical-align: center;
+        cursor: hand;
+        cursor: pointer;
+      }
+      .button:hover{
+        background-color: #428bca;
+        color: #fff;
+      }
+      .show{
+        /*visibility: visible;*/
+        display: block;
+      }
+      .hide{
+        /*visibility: hidden;*/
+        display: none;
+      }
+    </style>
+    <content-data id="contents" posts="{{posts}}"></content-data>
+    <template repeat="{{post in posts}}">
+    <div id="article{{post.uid}}" class="hide">
+    <div class='chapter' id='intro'>
+      <!-- ////////////////// project info content from json///////////////////-->
+      <div class='title-wrapper'><h1><span class='big-title'>{{post.fulltitle}}</span></h1></div>
+      <h3><span class='synopsis'>{{post.synopsis}}</span></h3>
+      <p><span class='tagline' id="tags" text="{{post.tagline}}"></p>
+      <p><span class='time'>{{post.period}}</span> | <span class='credit'>{{post.credit}}</span></p>
+    </div>
+    <div class='chapter' id='gallary' text="{{post.gallaryhtml}}">
+      <!-- ////////////////// image contents from json///////////////////-->
+    </div>
+    <div class='chapter' id='tab1'>
+    <h2><span class='chapter-title'>INTERACTION</span><br/><core-icon icon='expand-more'></core-icon></h2>
+    <div class='chapter paragraph' id='interaction' text="{{post.interactionhtml}}">
+      <!-- ////////////////// interaction html content from json///////////////////-->
+    </div>
+  </div>
+  <div class='chapter' id='tab2'>
+    <h2><span class='chapter-title'>VISUAL</span><br/><core-icon icon='expand-more'></core-icon></h2>
+    <div class='chapter paragraph' id='visual' text="{{post.visualhtml}}">
+      <!-- ////////////////// visual html content from json///////////////////-->
+    </div>
+  </div>
+  <div class='chapter' id='tab3'>
+    <h2><span class='chapter-title'>PROTOTYPE</span><br/><core-icon icon='expand-more'></core-icon></h2>
+    <div class='chapter paragraph' id='prototype' text="{{post.prototypehtml}}">
+      <!-- ////////////////// prototype html content from json///////////////////-->
+    </div>
+    <script>
+
+      var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+      if (isChrome){
+        var section = document.querySelector('article-box::shadow #article{{post.uid}}');
+        var tags = section.querySelector('#tags');
+        var gallary = section.querySelector('#gallary');
+        var tab1 = section.querySelector('#interaction');
+        var tab2 = section.querySelector('#visual');
+        var tab3 = section.querySelector('#prototype');
+      }else{
+        // var section = document.querySelector('#article1');
+        // console.log(section);
+
+        // var tags = section.getElementById('tags');
+        // var gallary = section.getElementById('gallary');
+        // var tab1 = section.getElementById('interaction');
+        // var tab2 = section.getElementById('visual');
+        // var tab3 = section.getElementById('prototype');
+      }
+
+      // console.log("{{post.selected}}");
+      tags.innerHTML = "{{post.tagline}}";
+      gallary.innerHTML = "{{post.gallaryhtml}}";
+      tab1.innerHTML = "{{post.interactionhtml}}";
+      tab2.innerHTML = "{{post.visualhtml}}";
+      tab3.innerHTML = "{{post.prototypehtml}}";
+      if({{post.selected}}){
+        section.className = "show";
+      }else{
+        section.className = "hide";
+      }
+
+    </script>
+  </div>
+  </div>
+  </template>
+  </template>
+  <script>
+  Polymer('article-box',{
+    ready: function() {
+      // console.log(this);
+
+  }
+  });
+  </script>
+</polymer-element>

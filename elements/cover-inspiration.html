@@ -1,0 +1,177 @@
+<link rel="import"  href="../bower_components/core-image/core-image.html">
+<link rel="import"  href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import"  href="../bower_components/core-animated-pages/transitions/cross-fade.html"><!--omit -->
+
+
+<polymer-element name="cover-inspiration">
+  <template>
+  <style>
+  .cover-wrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+  }
+  core-animated-pages {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  .whitehole{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #fff;
+    color: #f36368;
+    margin: auto;
+    position: relative;
+    z-index: 6556;
+    -webkit-transition: width ease 0.68s, height ease 0.68s, opacity 0.68s, border-radius 0.68s ease;
+    transition: width ease 0.68s, height ease 0.68s, opacity 0.68s, border-radius 0.68s ease;
+  }
+  .cover-title{
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 50px;
+  }
+  .cover-subline{
+    text-align: center;
+    font-family: serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 50px;
+  }
+  .text-wrapper{
+    position: absolute;
+    top:0;
+    left:0;
+    width:300px;
+    height: 100%;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+  .zoomout{
+    opacity: 0;
+  }
+  .svg-wrapper{
+    position: absolute;
+    top:0;
+    left:0;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+  .cover-hr{
+    width: 20px;
+    height: 5px;
+    border: 0;
+    background: #f36368;
+    -webkit-transition: width ease 0.5s;
+    transition: width ease 0.5s;
+  }
+  .stretched{
+    width: 150px;
+  }
+  svg#arrow{
+    -webkit-transition: width ease 0.5s, height ease 0.5s;
+    transition: width ease 0.5s, height ease 0.5s;
+  }
+  svg#arrow.expanded{
+    width: 300px;
+    height: 300px;
+  }
+  .boom{
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  </style>
+  <div horizontal layout center class="cover-wrapper" id="cover">
+  <core-animated-pages transitions="cross-fade-all" class="cover" id="animatedpages">
+      <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: lightblue;" src="../images/cover1.jpg" ></core-image></section>
+      <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: #f36368;" src="../images/cover2.jpg" ></core-image></section>
+      <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: lightgray;" src="../images/cover3.jpg" ></core-image></section>
+      <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: yellow;" src="../images/cover4.jpg" ></core-image></section>
+  </core-animated-pages>
+  <div horizontal center-justified layout class="whitehole" id="trigger">
+  <div layout vertical center-justified class="arrow-wrapper">
+  <svg version="1.1" id="arrow" class="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="100px" height="100px" viewBox="0 0 368 367" enable-background="new 0 0 368 367" xml:space="preserve">
+  <polygon fill="#FFFFFF" points="364,4 364,59.084 368,62.294 368,0 305.683,0 308.894,4 "/>
+  <line fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" x1="364.282" y1="3.696" x2="3.406" y2="364"/>
+  <polygon fill="#FFFFFF" points="4,363 4,308.21 0,305 0,367 62,367 58.789,363 "/>
+  </svg>
+  </div>
+  <div layout vertical center-justified class="text-wrapper" id="texts">
+    <span auto-vertical class="cover-title">JESS JUNG</span>
+    <hr auto-vertical class="cover-hr" id="line">
+    <span auto-vertical class="cover-subline">PORTFOLIO</span>
+  </div>
+  </div>
+  </div>
+  </template>
+  <script>
+    Polymer({
+     ready: function() {
+       // copy global values into instance properties
+       var up = true;
+       var max = 3;
+       var p = this.$.animatedpages;
+       p.selected = 0;
+      //  console.log(p.selected);
+      var transitionInterval = setInterval(stuff, 2000);
+      function stuff() {
+        if (up && p.selected === max || !up && p.selected === 0) {
+          up = !up;
+        }
+        if (up) {
+          p.selected += 1;
+        } else {
+          p.selected -= 1;
+        }
+      }
+      var trigger = this.$.trigger;
+      var arrow = trigger.querySelector("svg#arrow");
+      var line = trigger.querySelector("hr#line");
+      var title = trigger.querySelector("div#texts");
+      trigger.addEventListener("mouseenter", stretchArrow, false);
+      trigger.addEventListener("mouseleave", shrinkArrow, false);
+      trigger.addEventListener("click", bigbang, false);
+
+      function stretchArrow(){
+        // console.log("Stretch Arrow SVG");
+        arrow.setAttribute('width','300px');
+        arrow.setAttribute('height','300px');
+        line.className += " stretched";
+      }
+      function shrinkArrow(){
+        // console.log("Shrink Arrow SVG");
+        arrow.setAttribute('width','100px');
+        arrow.setAttribute('height','100px');
+        line.className = "cover-hr";
+      }
+      function bigbang(){
+        // console.log("bigbang!");
+        clearInterval(transitionInterval);
+        trigger.className = "whitehole boom";
+        title.className += " zoomout"
+        //console.log(trigger);
+        var timeout = setTimeout(function(){
+          document.querySelector("cover-inspiration").style.visibility = "hidden";
+          document.querySelector("core-scaffold").style.display = "block";
+          clearTimeout(timeout);
+        },680);
+      };
+    }
+  });
+
+  </script>
+</polymer-element>
