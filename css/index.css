@@ -27,16 +27,13 @@ core-scaffold::shadow core-toolbar, core-scaffold::shadow core-header-panel{
 .hide{
   display: none;
 }
-paper-item{
-  font-size: 11px;
-  opacity: 0.6;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
 .profile-wrapper{
   margin: 20px;
   width: 220px;
   height: 220px;
   /*background-color: red;*/
+}
+.space{
+  width: auto;
+  height:10px;
 }
