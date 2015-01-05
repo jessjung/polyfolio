@@ -5,7 +5,6 @@
     <style>
     :host {
       background-color: #f36368;
-      z-index: 100;
       -webkit-transform-style: preserve-3d;
       -moz-transform-style: preserve-3d;
       transform-style: preserve-3d;
@@ -48,6 +47,7 @@
       height: 30px;
     }
     .front-side {
+      z-index: 100;
       position: fixed;
       left:30px;
       top:30px;
@@ -71,11 +71,23 @@
       box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.20);
       -webkit-transition: box-shadow 0.38s;
       transition: box-shadow 0.38s;
+      z-index: 100;
+    }
+
+    .front-side img {
+      z-index: 100;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.20);
+      -webkit-transition: box-shadow 0.38s;
+      transition: box-shadow 0.38s;
     }
     .front-side:hover {
       box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
     }
     .back-side {
+      z-index: 101;
       position: fixed;
       left:30px;
       top:30px;
@@ -296,7 +308,7 @@
     }
 
     </style>
-    <div id="back" class="back-side mirror rotatebackandfadein"><!--rotateandfadeout-->
+    <div id="back" class="back-side mirror rotateandfadeout"><!--rotateandfadeout-->
       <div>
       <core-icon id="closeicon" icon="close" style="position: absolute; top:0; left:0; color:#fff; width: 30px; height: 30px;"></core-icon>
       <span id="title" class="title mirror">
@@ -314,7 +326,7 @@
 
       </div>
     </div>
-    <div id="front" class="front-side rotatebackandfadein"><!--rotateandfadein-->
+    <div id="front" class="front-side rotateandfadein"><!--rotateandfadein-->
       <content select="img"></content>
       <span id="about" class="about-title">ABOUT JESS</span>
     </div>

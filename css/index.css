@@ -18,9 +18,18 @@ core-scaffold::shadow core-toolbar, core-scaffold::shadow core-header-panel{
   color: #666666;
   background: #fff;
 }
-/*core-scaffold::shadow core-toolbar {
-  visibility: hidden;
-}*/
+
+@media (min-width: 1000px) {
+  core-scaffold::shadow core-toolbar {
+    display: none;
+    visibility: hidden;
+  }
+  core-toolbar {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 .show{
   display: block;
 }
