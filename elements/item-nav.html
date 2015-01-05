@@ -69,46 +69,28 @@
     },
     tapped: function(event, detail, sender){
       if(sender.id == "all"){
-        console.log("all:clicked!");
+        // console.log("all:clicked!");
         var i = document.querySelector('img#thumbnail');
         i.src = "";
       }else{
-        console.log(sender.id+":clicked!");
+        // console.log(sender.id+":clicked!");
         // console.log(sender);
         changeThumbnail();
+        var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if (!isChrome){
+          var route = 'article'+sender.templateInstance.model.post.uid;
+          for(var i = 1; i <8; i++){
+            var id = 'article'+i.toString();
+            // console.log()
+            var item = document.getElementById(id);
+            item.className = "hide";
+          }
+          var newarticle = document.getElementById(route);
+          newarticle.className = "show";
+          newarticle.getElementsByTagName("div")[0].scrollIntoView();
+          // console.log(newarticle);
+        }
       }
-
-      var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-      if (isChrome){
-      // var tabcontents = document.querySelector('paper-tabs::shadow #tabsContent');
-      var b = document.querySelector('mobile-profile::shadow #back');
-      var f = document.querySelector('mobile-profile::shadow #front');
-      //   var bar = document.querySelector('paper-tabs::shadow #selectionBar');
-      //   var route = 'article-box::shadow #post'+sender.templateInstance.model.post.uid;
-      //   var currentarticle = document.querySelector('article-box::shadow .show');
-      //   var newarticle = document.querySelector(route);
-      //   currentarticle.className = "hide";
-      //   newarticle.className = "show";
-      //   newarticle.querySelector("#intro").scrollIntoView();
-      }else{
-      //   var b = document.getElementById('back');
-      //   var bar = document.getElementById('selectionBar');
-      //   var tabcontents = document.getElementById('tabsContent');
-      //   var route = 'post'+sender.templateInstance.model.post.uid;
-      //   // console.log(route);
-      //
-      //   for(var i = 1; i <10; i++){
-      //     document.getElementById('post'+i).className = "hide";
-      //   }
-      //   var newarticle = document.getElementById(route);
-      //   newarticle.className = "show";
-      //   newarticle.getElementsByTagName("div")[0].scrollIntoView();
-      }
-      // var imgHTML = '<img id="thumbnail" src="'+sender.templateInstance.model.post.thumbnai+'">';
-      // b.style.background = sender.templateInstance.model.post.colorcode;
-      // var t = document.querySelector('.menu-label');
-      // t.innerHTML = sender.templateInstance.model.post.title;
-      // console.log(f);
       function changeThumbnail(){
         var i = document.querySelector('img#thumbnail');
         i.src = sender.templateInstance.model.post.thumbnail;

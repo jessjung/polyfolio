@@ -189,17 +189,18 @@
     </div>
     <script>
 
+      // var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+      // if (isChrome){
+      //   var section = document.querySelector('article-box::shadow #article{{post.uid}}');
+      // }else{
+      //   var section = document.querySelector('#post{{post.uid}}');
+      // }
       var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
       if (isChrome){
         var section = document.querySelector('article-box::shadow #article{{post.uid}}');
-        var tags = section.querySelector('#tags');
-        var gallary = section.querySelector('#gallary');
-        var tab1 = section.querySelector('#interaction');
-        var tab2 = section.querySelector('#visual');
-        var tab3 = section.querySelector('#prototype');
       }else{
-        // var section = document.querySelector('#article1');
-        // console.log(section);
+        var section = document.querySelectorAll('#article{{post.uid}}')[0];
+        // console.log(section[0]);
 
         // var tags = section.getElementById('tags');
         // var gallary = section.getElementById('gallary');
@@ -207,7 +208,11 @@
         // var tab2 = section.getElementById('visual');
         // var tab3 = section.getElementById('prototype');
       }
-
+      var tags = section.querySelector('#tags');
+      var gallary = section.querySelector('#gallary');
+      var tab1 = section.querySelector('#interaction');
+      var tab2 = section.querySelector('#visual');
+      var tab3 = section.querySelector('#prototype');
       // console.log("{{post.selected}}");
       tags.innerHTML = "{{post.tagline}}";
       gallary.innerHTML = "{{post.gallaryhtml}}";
