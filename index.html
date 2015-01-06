@@ -8,7 +8,7 @@
   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
   <link rel="import" href="elements/cover-inspiration.html">
   <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
-  <link rel="import" href="elements/mobile-profile.html">
+  <link rel="import" href="elements/profile-coin.html">
   <link rel="import" href="elements/item-nav.html">
   <!-- <link rel="import" href="elements/thumbnail-tiles.html"> -->
   <link rel="import" href="elements/article-box.html">
@@ -21,12 +21,12 @@
     <nav>
       <!--Top Left thumnail box -->
       <div class="profile-wrapper">
-      <mobile-profile>
+      <profile-coin>
         <name>JESS JUNG</name>
         <job-title>Interaction Designer</job-title>
         <desc>Jess Jung is an Interaction Designer who recently achieved a Masters degree from NYU Interactive Telecommunication Program. She has a BFA in Industrial design and a background in Advertising and Visual design. She is not only a designer who codes, but passionate about seeking for a new form of user interaction and user experience from collecting creative technology.</desc>
-        <img id="thumbnail" src="images/pb-th.jpg">
-      </mobile-profile>
+        <img id="thumbnail" src="images/pb-th.jpg" class="lightshadow">
+      </profile-coin>
     </div>
     <!--Left side item nav menus -->
     <div class="space"></div>
@@ -44,7 +44,7 @@
   var previousHash;
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   if (isChrome){
-    var profile = document.querySelector('mobile-profile');
+    var profile = document.querySelector('profile-coin');
     var tiles = document.querySelector('thumbnail-tiles');
     var article = document.querySelector('article-box');
     if(debug){
@@ -55,6 +55,16 @@
         // console.log(selectedItem);
       });
     }
+
+    profile.addEventListener('mouseenter', function() {
+      // console.log(document.querySelector('img#thumbnail'));
+      this.$.about.className = "about-title opacityup";
+      document.querySelector('img#thumbnail').className = 'darkshadow';
+    });
+    profile.addEventListener('mouseleave', function() {
+      this.$.about.className = "about-title opacitydown";
+      document.querySelector('img#thumbnail').className = 'lightshadow';
+    });
     var nav = document.querySelector('item-nav');
     nav.addEventListener('core-select', function() {
       var menulists = this.$.mainmenu;
@@ -62,8 +72,8 @@
       // console.log(selectedItem);
 
       if(selectedItem !== undefined){
-        var b = document.querySelector('mobile-profile::shadow #back');
-        var f = document.querySelector('mobile-profile::shadow #front');
+        var b = document.querySelector('profile-coin::shadow #back');
+        var f = document.querySelector('profile-coin::shadow #front');
         /*********************** init ************************/
         var previousArticle = document.querySelector('article-box::shadow '+previousHash);
         if(previousArticle != null){
@@ -85,7 +95,7 @@
           if(debug) tiles.className = "hide";
           article.className = "";
 
-          /*************** Mobile-profile Onchange ***************/
+          /*************** profile-coin Onchange ***************/
           b.className = "back-side mirror rotateandfadeout";
           f.className = "front-side rotateandfadein";
 

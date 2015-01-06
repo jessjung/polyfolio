@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/core-icons/core-icons.html">
 
-<polymer-element name="mobile-profile" on-click="{{tapped}}">
+<polymer-element name="profile-coin" on-click="{{tapped}}">
   <template>
     <style>
     :host {
@@ -68,7 +68,7 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.20);
+      /*box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.20);*/
       -webkit-transition: box-shadow 0.38s;
       transition: box-shadow 0.38s;
       z-index: 100;
@@ -79,13 +79,10 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.20);
       -webkit-transition: box-shadow 0.38s;
       transition: box-shadow 0.38s;
     }
-    .front-side:hover {
-      box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-    }
+
     .back-side {
       z-index: 101;
       position: fixed;
@@ -102,16 +99,18 @@
       transition:width 0.38s linear , height 0.38s linear , z-index 0.38s;
       text-align: right;
     }
-    #about{
-      /*opacity: 0;
-      -webkit-transition: opacity 0.38s;
-      transition: opacity 0.38s;*/
+    .opacityup{
+      opacity: 1;
+    }
+    .opacitydown{
+      opacity: 0.5;
     }
     .about-title{
       display: inline-block;
       position: fixed;
       top: 0;
       left: 0;
+      /*opacity: 0.5;*/
       /*padding-right: 71px;*/
       padding-left: 48px;
       font-weight: 700;
@@ -120,10 +119,9 @@
       text-transform: uppercase;
       color: #fff;
       line-height: 200px;
+      -webkit-transition: opacity 0.38s;
+      transition: opacity 0.38s;
     }
-    /*.about-title:hover{
-      opacity: 1;
-    }*/
     .about-panel{
       position: absolute;
       z-index: 500;
@@ -328,13 +326,13 @@
     </div>
     <div id="front" class="front-side rotateandfadein"><!--rotateandfadein-->
       <content select="img"></content>
-      <span id="about" class="about-title">ABOUT JESS</span>
+      <span id="about" class="about-title opacitydown">ABOUT JESS</span>
     </div>
     <div id="darkscreen" class="rollout">
     </div>
   </template>
   <script>
-  Polymer('mobile-profile',{
+  Polymer('profile-coin',{
     publish: {
       selected: false
     },
