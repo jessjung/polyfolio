@@ -162,7 +162,7 @@
       }
     </style>
     <content-data id="contents" posts="{{posts}}"></content-data>
-    <template repeat="{{post in posts}}">
+    <template repeat="{{post in posts}}" id="articletemplate">
     <div id="article{{post.uid}}" class="hide">
     <div class='chapter' id='intro'>
       <!-- ////////////////// project info content from json///////////////////-->

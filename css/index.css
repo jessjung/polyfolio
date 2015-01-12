@@ -16,7 +16,7 @@ a{
 }
 core-scaffold::shadow core-toolbar, core-scaffold::shadow core-header-panel{
   color: #666666;
-  background: #fff;
+  background-color:transparent;
 }
 
 @media (min-width: 1000px) {

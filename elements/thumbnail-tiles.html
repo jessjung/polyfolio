@@ -6,88 +6,26 @@
   <template>
   <style>
   :host{
-    width: 80%;
+    /*width: 80%;*/
+    margin: 20px;
   }
   </style>
-  <core-menu>
-  <core-item>
-  <thumbnail-tile id="tile1">
-      <project-title>"Phonebill"</project-title>
-      <img src="../images/pb-th.jpg">
-  </thumbnail-tile>
-</core-item>
-<core-item>
-  <thumbnail-tile id="tile2">
-      <project-title>"GoGetIt app"</project-title>
-      <img src="../images/gg-th.jpg">
-  </thumbnail-tile>
-</core-item>
-  <core-item>
-  <thumbnail-tile id="tile3">
-      <project-title>"Serendiffiti"</project-title>
-      <img src="../images/se-th.jpg">
-  </thumbnail-tile>
-</core-item>
-  <core-item>
-  <thumbnail-tile id="tile4">
-      <project-title>"Grinch Vs. Whos"</project-title>
-      <img src="../images/gr-th.jpg">
-  </thumbnail-tile>
-</core-item>
-  <core-item>
-  <thumbnail-tile id="tile5">
-      <project-title>"Mindful units"</project-title>
-      <img src="../images/mu-th.jpg">
-  </thumbnail-tile>
-</core-item>
-  <core-item>
-  <thumbnail-tile id="tile6">
-      <project-title>"Chopsticking"</project-title>
-      <img src="../images/ch-th.jpg">
-  </thumbnail-tile>
-</core-item>
-  <core-item>
-  <thumbnail-tile id="tile7">
-      <project-title>"Happy Circuits"</project-title>
-      <img src="../images/hc-th.jpg">
-  </thumbnail-tile>
-</core-item>
-</core-menu>
-  <!-- <content-data id="contents" posts="{{posts}}"></content-data>
-  <template repeat="{{post in posts}}">
-    <thumbnail-tile>
-        <project-title>{{post.title}}</project-title>
-        <img src="{{post.thumbnail}}">
-    </thumbnail-tile>
-  </template> -->
+  <content-data id="contents" posts="{{posts}}"></content-data>
+  <core-menu selected="0" id="thumbnailmenu">
+    <template repeat="{{post in posts}}">
+      <core-item>
+        <thumbnail-tile id="tile{{post.uid}}" style="background:{{post.colorcode}};">
+            <img id="projectimg" src="{{post.thumbnail}}">
+            <project-title>{{post.title}}</project-title>
+            <project-tag>{{post.maintag}}</project-tag>
+        </thumbnail-tile>
+      </core-item>
+    </template>
+  </core-menu>
 </template>
   <script>
     Polymer({
       ready: function() {
-        // console.log();
-        var tilelists = document.querySelectorAll("thumbnail-tiles::shadow thumbnail-tile");
-        for(var i = 0; i < tilelists.length; i++){
-          var tile = tilelists[i];
-          tile.addEventListener('mouseenter', function(){
-            // console.log(this.$.texts);
-            this.$.texts.className += " show";
-          });
-          tile.addEventListener('mouseleave', function(){
-            this.$.texts.className = "text-wrapper";
-          });
-          tile.addEventListener('click', function(){
-
-            // var selection = document.querySelector("item-nav::shadow core-menu::shadow core-selection");
-            // console.log(selection);
-            // var index = parseInt(this.id.substring(4,5));
-            // var itemlists = document.querySelectorAll("item-nav::shadow a");
-            // console.log(itemlists);
-            // for(var i = 0; i < itemlists.length; i++){
-            //   itemlists[i].className = "";
-            // }
-            // itemlists[index].className = "core-selected";
-          });
-        }
       }
     });
   </script>
