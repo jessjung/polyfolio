@@ -38,7 +38,7 @@
   </style>
   <content-data id="contents" posts="{{posts}}"></content-data>
   <core-menu selected="0" id="mainmenu">
-    <!-- <a href="/#all"><paper-item on-click={{tapped}} id="all">All</paper-item></a> -->
+    <a href="../#all"><paper-item on-click={{allTapped}} id="all">All</paper-item></a>
     <template repeat="{{post in posts}}">
       <a href="#article{{post.uid}}">
         <paper-item on-click={{tapped}} id="{{post.initial}}">
@@ -65,36 +65,41 @@
 <script>
   Polymer({
     ready: function(){
-      // console.log(this.$);
+      // console.log(this);
     },
     tapped: function(event, detail, sender){
-      if(sender.id == "all"){
-        // console.log("all:clicked!");
-        var i = document.querySelector('img#thumbnail');
-        i.src = "";
-      }else{
-        // console.log(sender.id+":clicked!");
-        // console.log(sender);
-        changeThumbnail();
-        var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-        if (!isChrome){
-          var route = 'article'+sender.templateInstance.model.post.uid;
-          for(var i = 1; i <8; i++){
-            var id = 'article'+i.toString();
-            // console.log()
-            var item = document.getElementById(id);
-            item.className = "hide";
-          }
-          var newarticle = document.getElementById(route);
-          newarticle.className = "show";
-          newarticle.getElementsByTagName("div")[0].scrollIntoView();
-          // console.log(newarticle);
+      changeThumbnail();
+      var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+      if (!isChrome){
+        var route = 'article'+sender.templateInstance.model.post.uid;
+        for(var i = 1; i <8; i++){
+          var id = 'article'+i.toString();
+          // console.log(isChrome);
+          var item = document.getElementById(id);
+          item.className = "hide";
         }
+        var newarticle = document.getElementById(route);
+        newarticle.className = "show";
+        newarticle.getElementsByTagName("div")[0].scrollIntoView();
+        // console.log(newarticle);
       }
       function changeThumbnail(){
         var i = document.querySelector('img#thumbnail');
         i.src = sender.templateInstance.model.post.thumbnail;
       }
+    },
+    allTapped: function(event, detail, sender){
+      var nav = document.querySelector("item-nav");
+      nav = nav.$.mainmenu;
+      selectedItem = nav.querySelectorAll("a")[0];
+      // console.log(selectedItem);
+      nav.$.selection.select(selectedItem);
+      // console.log("allTapped: ");
+      // console.log(sender);
+      var i = document.querySelector('img#thumbnail');
+      i.src = "";
+
+
     }
   });
 </script>

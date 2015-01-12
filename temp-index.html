@@ -10,8 +10,7 @@
   <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
   <link rel="import" href="elements/profile-coin.html">
   <link rel="import" href="elements/item-nav.html">
-  <!-- <link rel="import" href="elements/content-data.html"> -->
-  <link rel="import" href="elements/thumbnail-tiles.html">
+  <!-- <link rel="import" href="elements/thumbnail-tiles.html"> -->
   <link rel="import" href="elements/article-box.html">
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -35,15 +34,12 @@
     </nav>
     <!--Main article area-->
     <div layout horizontal center-justified fit id="maincontent">
-      <thumbnail-tiles id="all"></thumbnail-tiles>
+      <!-- <thumbnail-tiles></thumbnail-tiles> -->
       <article-box></article-box>
     </div>
   </core-scaffold>
 </body>
 <script>
-
-  /***************************** Google analytics ***************************/
-
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -52,15 +48,21 @@
   ga('create', 'UA-54576825-1', 'auto');
   ga('send', 'pageview');
 
-  var debug = true;
+  var debug = false;
   var previousHash;
-  var profile = document.querySelector('profile-coin');
-  var tiles = document.querySelector('thumbnail-tiles');
-  var article = document.querySelector('article-box');
-  var nav = document.querySelector('item-nav');
-  document.querySelector("core-scaffold").style.display = "none";
-
   var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (isChrome){
+    var profile = document.querySelector('profile-coin');
+    var tiles = document.querySelector('thumbnail-tiles');
+    var article = document.querySelector('article-box');
+    if(debug){
+      var tilelists = document.querySelector("thumbnail-tiles");
+      tilelists.addEventListener('core-select', function() {
+        var menulists = this.$.mainmenu;
+        var selectedItem = menulists.getElementsByClassName('core-selected')[0];
+        // console.log(selectedItem);
+      });
+    }
 
     profile.addEventListener('mouseenter', function() {
       // console.log(document.querySelector('img#thumbnail'));
@@ -71,38 +73,33 @@
       this.$.about.className = "about-title opacitydown";
       document.querySelector('img#thumbnail').className = 'lightshadow';
     });
-
+    var nav = document.querySelector('item-nav');
     nav.addEventListener('core-select', function() {
-      navmenu = nav.$.mainmenu;
-      // console.log("nav eventlistener for core-select");
       var menulists = this.$.mainmenu;
       var selectedItem = menulists.getElementsByClassName('core-selected')[0];
+      // console.log(selectedItem);
 
       if(selectedItem !== undefined){
-        if (isChrome){
-          var b = document.querySelector('profile-coin::shadow #back');
-          var f = document.querySelector('profile-coin::shadow #front');
-          var previousArticle = document.querySelector('article-box::shadow '+previousHash);
-          if(previousArticle != null){
-            previousArticle.className = "hide";
-          }
-        }else{
-          var b = profile.$.back;
-          var f = profile.$.front;
+        var b = document.querySelector('profile-coin::shadow #back');
+        var f = document.querySelector('profile-coin::shadow #front');
+        /*********************** init ************************/
+        var previousArticle = document.querySelector('article-box::shadow '+previousHash);
+        if(previousArticle != null){
+          previousArticle.className = "hide";
         }
         if(selectedItem.hash == "#all"){
-          // console.log("All page");
+          console.log("All page");
 
           tiles.className = "";
           article.className = "hide";
 
-          var timeout = setTimeout(function(){
-            b.className = "back-side mirror rotatebackandfadein";
-            f.className = "front-side rotatebackandfadeout";
-            clearTimeout(timeout);
-          },380);
+          // var timeout = setTimeout(function(){
+          //   b.className = "back-side mirror rotatebackandfadein";
+          //   f.className = "front-side rotatebackandfadeout";
+          //   clearTimeout(timeout);
+          // },380);
         }else{
-          // console.log(selectedItem.hash);
+          console.log(selectedItem.hash);
           if(debug) tiles.className = "hide";
           article.className = "";
 
@@ -110,32 +107,40 @@
           b.className = "back-side mirror rotateandfadeout";
           f.className = "front-side rotateandfadein";
 
-          if (isChrome){
           /*************** Maincontents Onchange ***************/
-            var selectedArticle = document.querySelector('article-box::shadow '+selectedItem.hash);
-            // var selectedArticle = document.querySelector('article-box');
+          var selectedArticle = document.querySelector('article-box::shadow '+selectedItem.hash);
+          // var selectedArticle = document.querySelector('article-box');
 
-            if(selectedArticle != null){
-            selectedArticle.className = "show";
-            selectedArticle.getElementsByTagName("div")[0].scrollIntoView();
-            }
-            previousHash = selectedItem.hash;
-          }else{
-            // console.log("not chrom: after nav item selected");
-            // console.log(selectedItem.hash);
-            // console.log(document.getElementById(id));
-            for(var i = 1; i <8; i++){
-              var id = 'article'+i.toString();
-              // console.log(isChrome);
-              var item = document.getElementById(id);
-              item.className = "hide";
-            }
-            var selectedId = selectedItem.hash.substring(1);
-            document.getElementById(selectedId).className = "show";
+          if(selectedArticle != null){
+          selectedArticle.className = "show";
+          selectedArticle.getElementsByTagName("div")[0].scrollIntoView();
           }
         }
+        previousHash = selectedItem.hash;
       }
     });
+  }else{
+    // var nav = document.querySelector('item-nav');
+    // nav.addEventListener('core-select', function() {
+    //   var menulists = this.$.mainmenu;
+    //   var selectedItem = menulists.getElementsByClassName('core-selected')[0];
+    //   var selectedHash = selectedItem.getAttribute("href");
+    //   var articles = document.querySelector('article-box');
+    //   // console.log(articles);
+    //
+    //
+    // });
 
+    // var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    // if (!isChrome){
+    // // console.log(selectedArticle.querySelector("#tags"));
+    // selectedArticle.querySelector("#tags").innerHTML = selectedArticle.querySelector("#tags").getAttribute("text");
+    // selectedArticle.querySelector("#gallary").innerHTML = selectedArticle.querySelector("#gallary").getAttribute("text");
+    // selectedArticle.querySelector("#interaction").innerHTML = selectedArticle.querySelector("#interaction").getAttribute("text");
+    // selectedArticle.querySelector("#visual").innerHTML = selectedArticle.querySelector("#visual").getAttribute("text");
+    // selectedArticle.querySelector("#prototype").innerHTML = selectedArticle.querySelector("#prototype").getAttribute("text");
+    // }
+    // console.log(selectedArticle);
+  }
 </script>
 </html>
