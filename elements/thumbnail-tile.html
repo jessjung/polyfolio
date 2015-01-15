@@ -35,7 +35,7 @@
     :host{
       width: 440px;
       height: 220px;
-      position: relative;
+      /*position: absolute;*/
       float:left;
     }
     polyfill-next-selector { content: 'img'; }
@@ -75,6 +75,18 @@
     /*letter-spacing: 1px;*/
     text-transform: uppercase;
   }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes positionChange {
+  0% {position: absolute;}
+  100% {position: relative;}
+  }
+
+  /* Standard syntax */
+  @keyframes positionChange {
+  0% {position: absolute;}
+  100% {position: relative;}
+  }
   </style>
   <div horizontal layout style="height:100%;">
     <div self-center horizontal layout center>
@@ -90,9 +102,8 @@
   </div>
   </template>
   <script>
+
     Polymer({
-      ready: function() {
-      },
       active: function(){
         var selectedId = this.id.substring(4);
         // console.log(selectedId);
@@ -105,7 +116,6 @@
         var thumbnailimg = document.querySelector("img#thumbnail");
         thumbnailimg.src = this.querySelector("img#projectimg").src;
         // console.log(this.querySelector("img#projectimg"));
-
       }
     });
   </script>

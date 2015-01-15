@@ -37,7 +37,7 @@
       }
   </style>
   <content-data id="contents" posts="{{posts}}"></content-data>
-  <core-menu selected="0" id="mainmenu">
+  <core-menu id="mainmenu">
     <a href="../#all"><paper-item on-click={{allTapped}} id="all">All</paper-item></a>
     <template repeat="{{post in posts}}">
       <a href="#article{{post.uid}}">

@@ -95,34 +95,34 @@
   }
   </style>
   <div horizontal layout center class="cover-wrapper" id="cover">
-  <core-animated-pages transitions="cross-fade-all" class="cover" id="animatedpages">
+    <core-animated-pages transitions="cross-fade-all" class="cover" id="animatedpages">
       <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: #f36368;" src="../images/cover1.jpg" ></core-image></section>
       <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: #f36368;" src="../images/cover2.jpg" ></core-image></section>
       <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: #f36368;" src="../images/cover3.jpg" ></core-image></section>
       <section><core-image preload sizing="cover" fade style="width:100%; height:100%; background-color: #f36368;" src="../images/cover4.jpg" ></core-image></section>
-  </core-animated-pages>
-  <div horizontal center-justified layout class="whitehole" id="trigger">
-  <div layout vertical center-justified class="arrow-wrapper">
-  <svg version="1.1" id="arrow" class="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="100px" height="100px" viewBox="0 0 368 367" enable-background="new 0 0 368 367" xml:space="preserve">
-  <polygon fill="#FFFFFF" points="364,4 364,59.084 368,62.294 368,0 305.683,0 308.894,4 "/>
-  <line fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" x1="364.282" y1="3.696" x2="3.406" y2="364"/>
-  <polygon fill="#FFFFFF" points="4,363 4,308.21 0,305 0,367 62,367 58.789,363 "/>
-  </svg>
-  </div>
-  <div layout vertical center-justified class="text-wrapper" id="texts">
-    <span auto-vertical class="cover-title">JESS JUNG</span>
-    <hr auto-vertical class="cover-hr" id="line">
-    <span auto-vertical class="cover-subline">PORTFOLIO</span>
-  </div>
-  </div>
+    </core-animated-pages>
+    <div horizontal center-justified layout class="whitehole" id="trigger">
+      <div layout vertical center-justified class="arrow-wrapper">
+      <svg version="1.1" id="arrow" class="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="100px" height="100px" viewBox="0 0 368 367" enable-background="new 0 0 368 367" xml:space="preserve">
+      <polygon fill="#FFFFFF" points="364,4 364,59.084 368,62.294 368,0 305.683,0 308.894,4 "/>
+      <line fill="none" stroke="#FFFFFF" stroke-width="4" stroke-miterlimit="10" x1="364.282" y1="3.696" x2="3.406" y2="364"/>
+      <polygon fill="#FFFFFF" points="4,363 4,308.21 0,305 0,367 62,367 58.789,363 "/>
+      </svg>
+      </div>
+      <div layout vertical center-justified class="text-wrapper" id="texts">
+        <span auto-vertical class="cover-title">JESS JUNG</span>
+        <hr auto-vertical class="cover-hr" id="line">
+        <span auto-vertical class="cover-subline">PORTFOLIO</span>
+      </div>
+    </div>
   </div>
   </template>
   <script>
     Polymer({
      ready: function() {
        // copy global values into instance properties
-       
+
        var up = true;
        var max = 3;
        var p = this.$.animatedpages;
@@ -168,6 +168,11 @@
         var timeout = setTimeout(function(){
           document.querySelector("cover-inspiration").style.visibility = "hidden";
           document.querySelector("core-scaffold").style.display = "block";
+          var nav = document.querySelector("item-nav");
+          nav = nav.$.mainmenu;
+          var selectedItem = nav.querySelectorAll("a")[0];
+          // console.log(selectedItem);
+          nav.$.selection.select(selectedItem);
           clearTimeout(timeout);
         },680);
       };
