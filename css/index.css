@@ -7,9 +7,9 @@ html,body,section {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-div{
+/*div{
   height: 100%;
-}
+}*/
 a{
   text-decoration: none;
   color: #666666;

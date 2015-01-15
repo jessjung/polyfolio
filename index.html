@@ -34,8 +34,8 @@
     <item-nav></item-nav>
     </nav>
     <!--Main article area-->
-    <div layout horizontal center-justified fit id="maincontent">
-      <thumbnail-tiles id="all"></thumbnail-tiles>
+    <div layout horizontal fit id="maincontent">
+      <!-- <thumbnail-tiles id="all"></thumbnail-tiles> -->
       <article-box></article-box>
     </div>
   </core-scaffold>
@@ -52,11 +52,16 @@
   ga('create', 'UA-54576825-1', 'auto');
   ga('send', 'pageview');
 
+  var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+  if(isFirefox) window.location.assign("http://jessjung.github.io/");
+
   var debug = true;
+  var wasAll = false;
   var previousHash;
+  var content = document.querySelector("div#maincontent");
   var profile = document.querySelector('profile-coin');
-  var tiles = document.querySelector('thumbnail-tiles');
   var article = document.querySelector('article-box');
+
   var nav = document.querySelector('item-nav');
   document.querySelector("core-scaffold").style.display = "none";
 
@@ -92,19 +97,27 @@
         }
         if(selectedItem.hash == "#all"){
           // console.log("All page");
-
-          tiles.className = "";
           article.className = "hide";
+          var tiles = document.createElement('thumbnail-tiles');
+          content.appendChild(tiles);
+
 
           var timeout = setTimeout(function(){
             b.className = "back-side mirror rotatebackandfadein";
             f.className = "front-side rotatebackandfadeout";
             clearTimeout(timeout);
           },380);
+
+          wasAll = true;
+
         }else{
           // console.log(selectedItem.hash);
-          if(debug) tiles.className = "hide";
           article.className = "";
+          if(wasAll) {
+            var tiles = document.querySelector('thumbnail-tiles');
+            content.removeChild(tiles);
+            wasAll = false;
+          }
 
           /*************** profile-coin Onchange ***************/
           b.className = "back-side mirror rotateandfadeout";
@@ -113,17 +126,12 @@
           if (isChrome){
           /*************** Maincontents Onchange ***************/
             var selectedArticle = document.querySelector('article-box::shadow '+selectedItem.hash);
-            // var selectedArticle = document.querySelector('article-box');
-
             if(selectedArticle != null){
             selectedArticle.className = "show";
             selectedArticle.getElementsByTagName("div")[0].scrollIntoView();
             }
             previousHash = selectedItem.hash;
           }else{
-            // console.log("not chrom: after nav item selected");
-            // console.log(selectedItem.hash);
-            // console.log(document.getElementById(id));
             for(var i = 1; i <8; i++){
               var id = 'article'+i.toString();
               // console.log(isChrome);
