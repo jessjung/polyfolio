@@ -196,24 +196,11 @@
     </div>
     <script>
 
-      // var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-      // if (isChrome){
-      //   var section = document.querySelector('article-box::shadow #article{{post.uid}}');
-      // }else{
-      //   var section = document.querySelector('#post{{post.uid}}');
-      // }
       var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
       if (isChrome){
         var section = document.querySelector('article-box::shadow #article{{post.uid}}');
       }else{
         var section = document.querySelectorAll('#article{{post.uid}}')[0];
-        // console.log(section[0]);
-        //
-        // var tags = section.getElementById('tags');
-        // var gallary = section.getElementById('gallary');
-        // var tab1 = section.getElementById('interaction');
-        // var tab2 = section.getElementById('visual');
-        // var tab3 = section.getElementById('prototype');
       }
       var tags = section.querySelector('#tags');
       var gallary = section.querySelector('#gallary');
@@ -226,11 +213,6 @@
       tab1.innerHTML = "{{post.interactionhtml}}";
       tab2.innerHTML = "{{post.visualhtml}}";
       tab3.innerHTML = "{{post.prototypehtml}}";
-      if({{post.selected}}){
-        section.className = "show";
-      }else{
-        section.className = "hide";
-      }
 
     </script>
   </div>
