@@ -120,7 +120,7 @@
     "fulltitle": "Happy Circuits",
     "synopsis": "What if our appliances could be a bit more social?",
     "tagline": "<span class='tag'>Connected Devices</span> <span class='tag'>Poetic Interaction</span> <span class='tag'>Mixed Reality</span> <span class='tag'>Invention</span> <span class='tag'>Room For More Possibilities</span> <span class='tag'>BluetoothLE</span>",
-    "gallaryhtml": "",
+    "gallaryhtml": "<img src='images/hc/hc.jpg' />",
     "interactionhtml": "<h4 class=' emphasized row-space-2'>IDEA</h4><h1>Building up an emotional relationship with home appliances</h1><p>What if a brand makes a future that is much more than an automated, smart home?<br/><br/>Electronics is not just a utility. Electronics should have its own identity and engagement with us. Happy Circuits can assess the relationship between electronics and its owner. It can reveals hidden thoughts of appliances in order to make it express for achieving a stronger link with human.</p>",
     "visualhtml": "<img src='images/hc/hc1.jpg' /><img src='images/hc/hc2.jpg' /><img src='images/hc/hc3.jpg' /><img src='images/hc/hc4.jpg' />",
     "prototypehtml": "<h4 class=' emphasized row-space-2'>Documentation</h4><object type='application/x-shockwave-flash' id='ytplayer' data='http://www.youtube.com/v/sQY_sIqvoV0?version=3&amp;rel=0&amp;wmode=opaque&amp;enablejsapi=1&amp;controls=0&amp;amp;showinfo=0' width='584' height='329'><param name='allowScriptAccess' value='always'><param name='allowFullScreen' value='true'><param name='frameborder' value='0'></object><div class='content-space-bar'></div>"
