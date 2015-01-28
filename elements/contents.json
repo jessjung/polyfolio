@@ -124,5 +124,23 @@
     "interactionhtml": "<h4 class=' emphasized row-space-2'>IDEA</h4><h1>Building up an emotional relationship with home appliances</h1><p>What if a brand makes a future that is much more than an automated, smart home?<br/><br/>Electronics is not just a utility. Electronics should have its own identity and engagement with us. Happy Circuits can assess the relationship between electronics and its owner. It can reveals hidden thoughts of appliances in order to make it express for achieving a stronger link with human.</p>",
     "visualhtml": "<img src='images/hc/hc1.jpg' /><img src='images/hc/hc2.jpg' /><img src='images/hc/hc3.jpg' /><img src='images/hc/hc4.jpg' />",
     "prototypehtml": "<h4 class=' emphasized row-space-2'>Documentation</h4><object type='application/x-shockwave-flash' id='ytplayer' data='http://www.youtube.com/v/sQY_sIqvoV0?version=3&amp;rel=0&amp;wmode=opaque&amp;enablejsapi=1&amp;controls=0&amp;amp;showinfo=0' width='584' height='329'><param name='allowScriptAccess' value='always'><param name='allowFullScreen' value='true'><param name='frameborder' value='0'></object><div class='content-space-bar'></div>"
+  },
+  {
+    "uid": 8,
+    "initial":"wa",
+    "title":  "We Advance U",
+    "maintag": "UX/UI/WEB APPLICATION",
+    "thumbnail":  "images/wa-th.jpg",
+    "colorcode": "#17639d",
+    "selected": false,
+    "period": "May 2013",
+    "credit": "Worked as a Visual Designer/ Project Manager at NYU ITP class team taught by Despina Papadopoulos",
+    "fulltitle": "We Advance U Website",
+    "synopsis": "An online interactive education and information site that aims for connecting and empowering local women in Haiti.",
+    "tagline": "<span class='tag'>Visual design</span> <span class='tag'>UI</span> <span class='tag'>Website Redesign</span> <span class='tag'>Information Architecture</span> <span class='tag'>Big Team Collaboration</span> <span class='tag'>NGO</span> <span class='tag'>Resource-Map</span>",
+    "gallaryhtml": "<img src='images/wa/wa1.jpg' />",
+    "interactionhtml": "<h4 class=' emphasized row-space-2'>Backgrounds</h4><p>This project is done by a team from a class called Design for the Real World at NYU’s Interactive Telecommunications Program taught by Despina Papadopoulos and presented to stakeholders of We Advance, a non-profit organization. The class was designed to support We Advance and We Advance University, an online interactive education and information site that seeks for ways to empower Haitian Women. In Haiti, a lot of women struggle for female rights, political rights, information, and etc. Our class had a total of 10 students, and each represented a role as a designer, framework architect, video producer, information architect, and etc. I was responsible for managing an overall project and providing clean design solution covering complex information of the website.</p><div class='content-space-bar'></div><h4 class=' emphasized row-space-2'>User experience on this website</h4><p><ul><li>Providing a weekly video series, ‘Konzannou’ and relevant information out to Haitian women in an entertaining, effective, easy and dynamic way using appropriate technology.</li><li>Helping people inside and outside Haiti search for nearby NGOs for self-receiving resources using map on this website.</li><li>Offering a hotline to make local women in Haiti ask services directly from the website.</li></ul></p>",
+    "visualhtml": "<h4 class=' emphasized row-space-2'>Index page with video/map thumbnail sections </h4><img src='images/wa/wa-home.jpg' /><div class='content-space-bar'></div><h4 class=' emphasized row-space-2'>Clean Design of interactive NGO resource maps</h4><img src='images/wa/wa2.jpg' /><div class='row-space-2'></div><img src='images/wa/wa3.jpg' /><h4 class=' emphasized row-space-2'>Dropdown UI design for information listing</h4><img src='images/wa/wa-sidebar.jpg' /><div class='content-space-bar'></div><h4 class=' emphasized row-space-2'>Suggested Visual Directions</h4><img src='images/wa/wa5.jpg' /><h4 class=' emphasized row-space-2'>Visual Design Documentation for prototyping</h4><img src='images/wa/wa6.jpg' />",
+    "prototypehtml": "<div horizontal layout> <a href='http://173.45.227.73/nap%20vanse/index.php' target='_blank'><div class='button'><p>GO TO LIVE DEMO</p></div></a><p>You can take a look how a visual design I delivered is implemented in <span class='pointcolor'><a href='http://173.45.227.73/nap%20vanse/index.php' target='_blank'>a high-fidelity prototype here</a></span>. <br/>This website is built by third party engineers based in Haiti.</p></div><div class='content-space-bar'></div>"
   }
 ]
